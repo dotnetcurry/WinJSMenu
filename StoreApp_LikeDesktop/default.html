@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>StoreApp_LikeDesktop</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- StoreApp_LikeDesktop references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    <script type="text/javascript">
+       
+        WinJS.UI.processAll().then(function () {
+            //Register Events
+            document.getElementById('btnMaster').addEventListener("click", headMastersMenu, false);
+            document.getElementById('btnReports').addEventListener("click", headReportsMenu, false);
+            document.getElementById('menuItemNewStockiest').addEventListener("click", newStockiest, false)
+
+            var divNewStockiest = document.getElementById('newStockiestFlyout');
+            divNewStockiest.style.display = "none"; //block is the other Value
+        });
+
+        //Method to Show Masters menu
+        function showMastersMenu(mnu,parent,loc)
+        {
+            mnu.winControl.show(parent,loc);
+        }
+        function headMastersMenu()
+        {
+            showMastersMenu(mnuMaster, btnMaster, "bottom");
+        }
+
+        //Method to Show Reports Menu
+        function showReportsMenu(mnu, parent, loc) {
+            mnu.winControl.show(parent, loc);
+        }
+        function headReportsMenu() {
+            showReportsMenu(mnuReports, btnReports, "bottom");
+        }
+
+        //Method for showing NewStockiest
+        function shownewstockiest(mnu,parent,loc)
+        {
+            mnu.winControl.show(parent,loc);
+        }
+
+        function newStockiest()
+        {
+              var mnu = document.getElementById('menuItemNewStockiest');
+             newStockiestFlyout = document.getElementById('newStockiestFlyout');
+             newStockiestFlyout.style.display = "block";
+              shownewstockiest(newStockiestFlyout, mnu, "bottom");
+        }
+         
+
+    </script>
+</head>
+<body>
+    <table style="width:500px;height:100px">
+         <tr>
+             <td style="width:250px">
+                 <button id="btnMaster" aria-haspopup="true">Master</button>
+             </td>
+             <td style="width:250px">
+                 <button id="btnReports" aria-haspopup="true">Reports</button>
+             </td>
+         </tr>
+     </table>
+    <!--The Master Menu-->
+    <div id="mnuMaster" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemNewStockiest',label:'New Stockiest'}"></button>
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator1',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemNewStockiest',label:'New Doctor'}"></button>
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator2',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemNewStockiest',label:'New Order'}"></button>
+    </div>
+    <!--Master Menu Ends Here-->
+    <!--Menu for Reports-->
+    <div id="mnuReports" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemCitywiseDoctors',label:'City wise Doctors'}"></button>
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator3',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemCitywiseStockiest',label:'City wise Stockiest'}"></button>
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator4',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemStockiestwiseOrders',label:'Stockiest wise Orders'}"></button>
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator5',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'menuItemDoctorwiseOrders',label:'Doctor wise Orders'}"></button>
+    </div>
+    <!--Reports Menu     Ends Here-->
+
+    <!--The Flyout for New Stockiest-->
+    <div id="newStockiestFlyout"  data-win-control="WinJS.UI.Flyout">
+        <p>
+                    <label>Stockiest Name</label>
+                    <br />
+                    <span id="stockiestNameError"></span>
+                    <input type="text" id="stockiestName"  required="required"/>
+                </p>
+                 <p>
+                    <label>Address</label>
+                    <br />
+                    <span id="addressError"></span>
+                    <textarea id="stockiestAddress" required="required"></textarea>
+                </p>
+                 <p>
+                    <label>Owner</label>
+                    <br />
+                    <span id="ownerError"></span>
+                    <input type="text" id="stockietsOwner"  required="required"/>
+                </p>
+                <p>
+                    <label>Phone No.</label>
+                    <br />
+                    <span id="phoneError"></span>
+                    <input type="number" id="stockiestPhone"  required="required"/>
+                </p>
+                <p>
+                    <label>Mobile</label>
+                    <br />
+                    <span id="mobileError"></span>
+                    <input type="number" id="stockiestMobile"  required="required"/>
+                </p>
+                <p>
+                    <label>Email</label>
+                    <br />
+                    <span id="emailError"></span>
+                    <input type="email" id="stockiestEmail"/>
+                </p>
+                <p>
+                    <button id="btnSaveStockiest">Save</button>
+                </p>
+    </div>
+    <!--Ends Here-->
+     
+</body>
+</html>
